@@ -1,0 +1,48 @@
+# AgriSense AI - confidence routing thresholds.
+#
+# Phase 1 doc: "Thresholds are configuration values determined from model
+# evaluation; they are not universal scientific constants."
+#
+# These are STARTING values. Run `python -m agrisense.crop.train` and
+# `python -m agrisense.disease.train`; each prints a threshold-sweep table
+# showing coverage vs. selective-accuracy. Set the values below from that
+# table, then record the evaluation date here.
+#
+# calibrated_on: <fill in after running training>
+
+crop:
+  # P(top-1) required to present a result as "likely".
+  high_confidence: 0.80
+  # Margin between top-1 and top-2 probability. Guards against the model
+  # being confident but torn between two crops.
+  high_margin: 0.20
+  # Below this, a community review adds no value -> escalate to an officer.
+  review_floor: 0.45
+  # Novelty score cutoff. Inputs unlike anything in the training data are
+  # NOT scored; we ask the farmer for better numbers instead. The crop
+  # dataset is synthetic and tightly clustered, so this fires often on real
+  # soil-card values -- that is correct behaviour, not a bug.
+  ood_percentile: 1.0
+
+disease:
+  high_confidence: 0.60
+  high_margin: 0.10
+  review_floor: 0.30
+  # Image quality gates, applied BEFORE the classifier runs.
+  quality:
+    min_blur_variance: 60.0     # variance of Laplacian; below = out of focus
+    min_leaf_fraction: 0.08     # fraction of pixels that are green plant tissue
+    min_mean_luma: 30.0         # under-exposed
+    max_mean_luma: 225.0        # blown out
+  # Classes whose advisory implies a pesticide / fungicide / dosage action.
+  # Phase 1: "High-impact pesticide, fertilizer, or dosage instructions
+  # require conservative handling and should be expert-verified."
+  # These can never be returned as HIGH_CONFIDENCE.
+  high_risk_substring:
+    - "blight"
+    - "rot"
+    - "virus"
+    - "mold"
+    - "mildew"
+    - "bacterial"
+    - "Haunglongbing"
