@@ -1,0 +1,28 @@
+{
+  "name": "agrisense-backend",
+  "version": "0.1.0",
+  "description": "AgriSense AI - Express/MongoDB backend (Grow-Protect-Sell orchestration, confidence routing, review consensus)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "lint:syntax": "node -c src/server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "file-type": "^16.5.4",
+    "form-data": "^4.0.1",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.7.3",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.1",
+    "uuid": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
