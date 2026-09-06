@@ -1,0 +1,15 @@
+# Trained artifacts - regenerate with scripts/run_all.sh, never commit.
+# A model trained on the synthetic fixture must never reach a demo.
+artifacts/*
+!artifacts/.gitkeep
+
+# Datasets
+data/*
+!data/.gitkeep
+!data/SYNTHETIC_Crop_recommendation.csv
+
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

@@ -1,0 +1,13 @@
+# AgriSense AI - classical ML service (no deep learning)
+numpy>=1.26,<3
+pandas>=2.0
+scikit-learn>=1.4
+scikit-image>=0.22        # GLCM / LBP texture descriptors
+Pillow>=10.0              # image decode
+joblib>=1.3               # parallel feature extraction + artifact IO
+PyYAML>=6.0               # routing thresholds config
+fastapi>=0.110            # AI service (Phase 2/3 contract)
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9   # image upload
+pydantic>=2.6
+matplotlib>=3.8           # evaluation plots (reliability diagram, confusion matrix)

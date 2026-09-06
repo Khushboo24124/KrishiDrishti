@@ -25,13 +25,13 @@ crop:
   ood_percentile: 1.0
 
 disease:
-  high_confidence: 0.60
-  high_margin: 0.10
-  review_floor: 0.30
+  high_confidence: 0.75
+  high_margin: 0.15
+  review_floor: 0.40
   # Image quality gates, applied BEFORE the classifier runs.
   quality:
     min_blur_variance: 60.0     # variance of Laplacian; below = out of focus
-    min_leaf_fraction: 0.08     # fraction of pixels that are green plant tissue
+    min_leaf_fraction: 0.20     # fraction of pixels that are green plant tissue
     min_mean_luma: 30.0         # under-exposed
     max_mean_luma: 225.0        # blown out
   # Classes whose advisory implies a pesticide / fungicide / dosage action.
