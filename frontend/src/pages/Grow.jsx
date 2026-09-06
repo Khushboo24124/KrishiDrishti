@@ -51,7 +51,7 @@ export default function Grow() {
       };
       const res = await api.recommendCrop(payload);
       setResult(res);
-      if (res.predictionId) {
+      if (res.predictionId && res.routingStatus === "REVIEW_REQUIRED") {
         rememberPrediction(res.predictionId, {
           type: "crop",
           headline: res.recommendedCrop || "no result",

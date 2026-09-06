@@ -44,7 +44,7 @@ export default function Protect() {
     try {
       const res = await api.analyzeDisease({ file, farmerId: farmer?.farmerId });
       setResult(res);
-      if (res.predictionId) {
+      if (res.predictionId && res.routingStatus === "REVIEW_REQUIRED") {
         rememberPrediction(res.predictionId, {
           type: "disease",
           headline: res.disease || "no result",
